@@ -13,15 +13,12 @@ spec:
       labels:
         app: sim
     spec:
-      serviceAccountName: SERVICE_ACCOUNT_NAME
       containers:
         - name: sim-backend-container
-          image: CONTAINER_IMAGE
+          image: 212845026981.dkr.ecr.eu-central-1.amazonaws.com/sim-backend-dev:0.0.84-4299d7787a3c4250dc89540ccdde3817e2f454a0-0.50.15
           ports:
             - name: sim-port
               containerPort: 8080
           env:
             - name: ASPNETCORE_URLS
               value: "http://*:8080"
-            - name: SERVICE_VERSION
-              value: SERVICE_GIT_VERSION
