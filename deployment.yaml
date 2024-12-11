@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sim-backend-dev
-  namespace: sim-backend
+  namespace: sim-backend2
 spec:
   replicas: 1
   selector:

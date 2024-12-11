@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: sim-ingress
-  namespace: sim-backend
+  namespace: sim-backend2
   annotations:
     alb.ingress.kubernetes.io/use-regex: "true"
     alb.ingress.kubernetes.io/scheme: internet-facing

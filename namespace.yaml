@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: sim-backend
+  name: sim-backend2
   labels:
     #mesh: era-mesh
     #appmesh.k8s.aws/sidecarInjectorWebhook: enabled
