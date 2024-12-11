@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sim-backend-dev
+  namespace: sim-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sim
+  template:
+    metadata:
+      labels:
+        app: sim
+    spec:
+      serviceAccountName: SERVICE_ACCOUNT_NAME
+      containers:
+        - name: sim-backend-container
+          image: CONTAINER_IMAGE
+          ports:
+            - name: sim-port
+              containerPort: 8080
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://*:8080"
+            - name: SERVICE_VERSION
+              value: SERVICE_GIT_VERSION

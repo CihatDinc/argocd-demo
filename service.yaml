@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sim-service
+  namespace: sim-backend
+spec:
+  ports:
+    - port: 443
+      targetPort: 8080
+      protocol: TCP
+      name: https
+  type: NodePort
+  selector:
+    app: sim

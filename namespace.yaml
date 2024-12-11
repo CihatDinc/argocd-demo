@@ -1,0 +1,9 @@
+# create amazon-cloudwatch namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sim-backend
+  labels:
+    #mesh: era-mesh
+    #appmesh.k8s.aws/sidecarInjectorWebhook: enabled
+    pod-security.kubernetes.io/warn: privileged

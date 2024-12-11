@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sim-ingress
+  namespace: sim-backend
+  annotations:
+    alb.ingress.kubernetes.io/use-regex: "true"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-central-1:212845026981:certificate/912d09fe-afc5-4dda-9449-5a4b99d1e46a
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    alb.ingress.kubernetes.io/tags: map-migrated=migQOWHHR7OW3
+    alb.ingress.kubernetes.io/group.name: era-services-lb
+    alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:eu-central-1:212845026981:regional/webacl/ALB-Waf-Web-Acl/007e78eb-016c-417a-8ac9-627db06e91e2
+
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+          - path: /sim-backend
+            pathType: Prefix
+            backend:
+              service:
+                name: sim-service
+                port:
+                  number: 443
+          - path: "/sim-backend/*:*"
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: sim-service
+                port:
+                  number: 443                 
